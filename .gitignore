@@ -1,0 +1,4 @@
+/node_modules
+/etsenv
+/.env
+/package-lock.json
