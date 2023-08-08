@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const empTimeSheetSchema = new mongoose.Schema({
   empClockIn: {
     type: String,
-    require: true,
+    default:"",
   },
   empClockOut: {
     type: String,
-    require: true,
+    default: "",
   },
   empHoursLoggedIn: {
     type: String,
@@ -15,11 +15,11 @@ const empTimeSheetSchema = new mongoose.Schema({
   },
   empClockInIP: {
     type: String,
-    require: true,
+    default: "",
   },
   empWorkingFrom: {
     type: String,
-    require: true,
+    default: "",
   },
   empWorkingDays: {
     type: String,
@@ -27,7 +27,7 @@ const empTimeSheetSchema = new mongoose.Schema({
   },
   empDaysPresent: {
     type: String,
-    require: true,
+    default: "",
   },
   empHalfDays: {
     type: String,
@@ -35,7 +35,7 @@ const empTimeSheetSchema = new mongoose.Schema({
   },
   empDaysAbsent: {
     type: String,
-    require: true,
+    default: "Absent",
   },
   empHolidays: {
     type: String,
@@ -43,22 +43,21 @@ const empTimeSheetSchema = new mongoose.Schema({
   },
   empDaysLate: {
     type: String,
-    required: true,
+    default: "",
   },
   empAttendanceStatus: {
     type: String,
-    required: true,
+    default: "",
   },
   isActive: {
     type: String,
     default: "true",
   },
   empID: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Types.ObjectId,
     ref: "employee",
-    required: true,
   },
 });
-empSchema.set("timestamps", true);
+empTimeSheetSchema.set("timestamps", true);
 
 module.exports = mongoose.model("timeSheet", empTimeSheetSchema);

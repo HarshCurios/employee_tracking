@@ -23,7 +23,7 @@ module.exports = {
     let token = await jwt.sign({ empId: empData._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-    let accessToken = "";
+    let accessToken ;
     if (empData) {
       if (empPass != 0) {
         const hashPassword = await bcrypt.compare(empPass, empData.empPass);

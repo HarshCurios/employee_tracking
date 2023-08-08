@@ -16,5 +16,6 @@ empRouter.post("/resetpassswordemail", sendEmpPasswordEmailValidation,
   employee.sendEmpResetPassEmail);
 empRouter.post("/resetpassword/:id/:token", resetPasswordValidation,
   employee.resetPassword);
+empRouter.post("/setnewpassword/:id", employee.setNewPassword )
 
 module.exports = empRouter;

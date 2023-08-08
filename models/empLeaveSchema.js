@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const empLeaveSchema = new mongoose.Schema({
   empTotalLeave: {
     type: Number,
-    require: true,
+    default: 0
   },
   empCasualLeave: {
     type: Number,
@@ -19,22 +19,22 @@ const empLeaveSchema = new mongoose.Schema({
   },
   empLeaveStatus: {
     type: String,
-    require: true,
+    default: "pending",
   },
   empLeaveMessage: {
     type: String,
-    default: "0",
+    default: "",
   },
   isActive: {
     type: String,
     default: "true",
   },
   empID: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Types.ObjectId,
     ref: "employee",
     required: true,
   },
 });
-empSchema.set("timestamps", true);
+empLeaveSchema.set("timestamps", true);
 
 module.exports = mongoose.model("leave", empLeaveSchema);

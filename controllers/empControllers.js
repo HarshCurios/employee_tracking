@@ -104,7 +104,7 @@ module.exports = {
       } else {
         empLogger.log("error", "Invalid email, please enter valid email");
         res.status(400).json({
-          //! bad request, invalid input 
+          //! bad request, invalid input
           success: false,
           message: "Invalid email, please enter valid email",
         });
@@ -149,6 +149,74 @@ module.exports = {
           });
         }
       }
+    } catch (error) {
+      empLogger.log("error", error.message);
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  setNewPassword: async (req, res) => {
+    const empId = req.params.id;
+    console.log(empId);
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+    try {
+      const empData = await empSchema.findById(empId);
+      const checkPass = await bcrypt.compare(oldPassword, empData.empPass);
+      if (checkPass) {
+        if (newPassword === confirmPassword) {
+          const salt = bcrypt.genSalt(10);
+          const hashPassword = await bcrypt.hash(newPassword, parseInt(salt));
+          empData.empPass = hashPassword;
+          empLogger.log("info", "Password updated successfully");
+          res.status(200).json({
+            success: true,
+            message: "Password Updated Successfully",
+          });
+        } else {
+          empLogger.log(
+            "error",
+            "newPassword and confirmPassword does not match"
+          );
+          res.status(400).json({
+            //! bad request
+            success: false,
+            message: "newPassword and confirmPassword does not match",
+          });
+        }
+      } else {
+        empLogger.log("error", "Invalid password, please enter valid password");
+        res.status(400).json({
+          //! bad request, invalid input
+          success: false,
+          message: "Invalid password, please enter valid password",
+        });
+      }
+    } catch (error) {
+      empLogger.log("error", error.message);
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  updatePicAndAddress: async (req, res) => {
+    const empId = req.params.id;
+    const { empAddress } = req.body;
+    try {
+      const empData = await empSchema.findById(empId);
+      const filePath = `/uploads/user/${req.file.filename}`;
+      empData.empProfilePic = filePath;
+      empData.empAddress = empAddress;
+      await empData.save();
+      empLogger.log("info", "Password updated successfully");
+      res.status(200).json({
+        success: true,
+        message: "Password Updated Successfully",
+      });
     } catch (error) {
       empLogger.log("error", error.message);
       res.status(500).json({

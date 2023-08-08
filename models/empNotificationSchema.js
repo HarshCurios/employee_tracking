@@ -19,6 +19,6 @@ const empNotificationSchema = new mongoose.Schema({
     required: true,
   },
 });
-empTimeSheetSchema.set("timestamps", true);
+empNotificationSchema.set("timestamps", true);
 
 module.exports = mongoose.model("notification", empNotificationSchema);

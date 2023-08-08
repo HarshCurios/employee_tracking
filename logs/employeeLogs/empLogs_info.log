@@ -109,3 +109,22 @@ level : info: Aug-03-2023 16:48:37: 	Email sent successfully
 level : info: Aug-03-2023 16:53:13: 	Employee logged in successfully
 level : info: Aug-03-2023 18:55:53: 	Email sent successfully
 level : info: Aug-03-2023 18:56:41: 	Email sent successfully
+level : info: Aug-07-2023 16:43:59: 	Employee's account created
+level : info: Aug-07-2023 17:20:29: 	Employee's account created
+level : info: Aug-07-2023 17:24:25: 	Employee's account created
+level : info: Aug-07-2023 17:30:18: 	Employee's account created
+level : info: Aug-07-2023 17:43:06: 	Employee's account created
+level : info: Aug-08-2023 09:51:10: 	Employee's account created
+level : error: Aug-08-2023 09:52:51: 	Cannot read properties of null (reading 'empPass')
+level : error: Aug-08-2023 09:52:51: 	Cannot read properties of null (reading 'empPass')
+level : error: Aug-08-2023 09:53:36: 	Cannot read properties of null (reading 'empPass')
+level : error: Aug-08-2023 09:53:36: 	Cannot read properties of null (reading 'empPass')
+level : error: Aug-08-2023 09:54:12: 	Cannot read properties of null (reading 'empPass')
+level : error: Aug-08-2023 09:54:12: 	Cannot read properties of null (reading 'empPass')
+level : error: Aug-08-2023 09:55:34: 	Invalid password, please enter valid password
+level : error: Aug-08-2023 09:55:34: 	Invalid password, please enter valid password
+level : error: Aug-08-2023 09:55:49: 	newPassword and confirmPassword does not match
+level : error: Aug-08-2023 09:55:49: 	newPassword and confirmPassword does not match
+level : error: Aug-08-2023 09:55:55: 	data must be a string or Buffer and salt must either be a salt string or a number of rounds
+level : error: Aug-08-2023 09:55:55: 	data must be a string or Buffer and salt must either be a salt string or a number of rounds
+level : info: Aug-08-2023 09:56:36: 	Password updated successfully
