@@ -2,8 +2,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 
-const empSchema = require("../models/employSchema");
-const empLogger = require("../utils/empLogger");
+const empSchema = require("../../models/employSchema");
+const empLogger = require("../../utils/empLogger");
 const { transporter } = require("../services/emailService");
 const authService = require("../services/authService");
 
@@ -50,9 +50,9 @@ module.exports = {
   },
 
   empLogIn: async (req, res) => {
-    const { empEmail, empPass } = req.body;
+    const { empEmail, empPass, empRole } = req.body;
     try {
-      let { valid, token } = await authService.validateEmployee(
+      let { valid, accessToken } = await authService.validateEmployee(
         empEmail,
         empPass
       );
@@ -61,7 +61,7 @@ module.exports = {
         res.status(200).json({
           success: true,
           message: "Employee logged in successfully",
-          accessToken: token,
+          accessToken: accessToken,
         });
       } else {
         empLogger.log("error", "Email or password is not valid");
@@ -203,25 +203,39 @@ module.exports = {
     }
   },
 
-  updatePicAndAddress: async (req, res) => {
-    const empId = req.params.id;
-    const { empAddress } = req.body;
+  updateEmpData: async (req, res) => {
     try {
-      const empData = await empSchema.findById(empId);
-      const filePath = `/uploads/user/${req.file.filename}`;
-      empData.empProfilePic = filePath;
-      empData.empAddress = empAddress;
-      await empData.save();
-      empLogger.log("info", "Password updated successfully");
-      res.status(200).json({
-        success: true,
-        message: "Password Updated Successfully",
-      });
-    } catch (error) {
-      empLogger.log("error", error.message);
+      const employeeId = req.params.id;
+      const employeeAddress = req.body.empAddress;
+      const newProfilePic = req.file
+        ? `/uploads/employeeProfilePic${req.file.filename}`
+        : undefined;
+      const updatedEmployee = await employeeSchema.findByIdAndUpdate(
+        employeeId,
+        {
+          empProfilePic: newProfilePic,
+          empAddress: employeeAddress,
+        },
+        { new: true }
+      );
+      if (!updatedEmployee) {
+        logger.log("error", "Employee not found");
+        return res.status(404).json({
+          success: false,
+          message: "Employee not found",
+        });
+      } else {
+        logger.log("info", "Profile pic and address updated successfully");
+        res.status(200).json({
+          success: true,
+          message: "Profile pic and address updated successfully ✔",
+        });
+      }
+    } catch (err) {
+      logger.log("error", err.message);
       res.status(500).json({
         success: false,
-        message: error.message,
+        error: err.message,
       });
     }
   },

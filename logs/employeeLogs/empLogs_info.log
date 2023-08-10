@@ -128,3 +128,19 @@ level : error: Aug-08-2023 09:55:49: 	newPassword and confirmPassword does not m
 level : error: Aug-08-2023 09:55:55: 	data must be a string or Buffer and salt must either be a salt string or a number of rounds
 level : error: Aug-08-2023 09:55:55: 	data must be a string or Buffer and salt must either be a salt string or a number of rounds
 level : info: Aug-08-2023 09:56:36: 	Password updated successfully
+level : info: Aug-09-2023 18:00:41: 	Employee's account created
+level : info: Aug-09-2023 18:01:43: 	Employee logged in successfully
+level : error: Aug-09-2023 18:04:46: 	Email or password is not valid
+level : error: Aug-09-2023 18:04:46: 	Email or password is not valid
+level : info: Aug-09-2023 18:06:26: 	Employee logged in successfully
+level : info: Aug-09-2023 18:09:38: 	Employee logged in successfully
+level : info: Aug-09-2023 18:11:56: 	Employee logged in successfully
+level : error: Aug-09-2023 18:20:25: 	Employee already exists with this email, please log in
+level : error: Aug-09-2023 18:20:25: 	Employee already exists with this email, please log in
+level : info: Aug-09-2023 18:20:37: 	Employee's account created
+level : info: Aug-09-2023 18:21:00: 	Employee logged in successfully
+level : error: Aug-10-2023 15:24:01: 	Email or password is not valid
+level : error: Aug-10-2023 15:24:01: 	Email or password is not valid
+level : info: Aug-10-2023 15:24:18: 	Employee's account created
+level : info: Aug-10-2023 15:24:47: 	Employee logged in successfully
+level : info: Aug-10-2023 16:06:05: 	Employee's account created

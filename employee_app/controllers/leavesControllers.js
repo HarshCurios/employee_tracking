@@ -1,4 +1,4 @@
-const empLeaveSchema = require("../models/empLeaveSchema");
+const empLeaveSchema = require("../../models/empLeaveSchema");
 
 module.exports = {
   empLeave: async (req, res) => {

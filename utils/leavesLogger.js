@@ -1,9 +1,9 @@
 const { createLogger, transports, format } = require("winston");
 
-const timeSheetLogger = createLogger({
+const leavesLogger = createLogger({
   transports: [
     new transports.File({
-      filename: "logs/timeSheetLogs/timeSheetLogs_info.log",
+      filename: "logs/leaves/leavesLogs_info.log",
       level: "info",
       maxsize: 5242880,
       maxFiles: 5,
@@ -19,7 +19,7 @@ const timeSheetLogger = createLogger({
     }),
 
     new transports.File({
-      filename: "logs/timeSheetLogs/timeSheetLogs_info.log",
+      filename: "logs/leaves/leavesLogs_info.log",
       level: "error",
       maxsize: 5242880,
       maxFiles: 5,
@@ -36,4 +36,4 @@ const timeSheetLogger = createLogger({
   ],
 });
 
-module.exports = timeSheetLogger;
+module.exports = leavesLogger;

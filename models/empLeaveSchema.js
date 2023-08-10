@@ -17,6 +17,14 @@ const empLeaveSchema = new mongoose.Schema({
     type: String,
     default: "casual",
   },
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+    required: true,
+  },
   empLeaveStatus: {
     type: String,
     default: "pending",

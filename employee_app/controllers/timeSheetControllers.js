@@ -1,7 +1,7 @@
 const moment = require("moment");
 
-const timeSheetLogger = require("../utils/timeSheetLogger");
-const empTimeSheetSchema = require("../models/empTimeSheetSchema");
+const timeSheetLogger = require("../../utils/timeSheetLogger");
+const empTimeSheetSchema = require("../../models/empTimeSheetSchema");
 const ipService = require("../services/ipService");
 
 module.exports = {
