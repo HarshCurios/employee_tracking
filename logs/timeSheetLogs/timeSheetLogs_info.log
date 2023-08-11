@@ -1,1 +1,8 @@
 level : info: Aug-08-2023 16:37:20: 	error
+level : error: Aug-10-2023 22:30:01: 	Cannot read properties of null (reading 'empClockIn')
+level : error: Aug-10-2023 22:30:01: 	Cannot read properties of null (reading 'empClockIn')
+level : error: Aug-10-2023 22:32:17: 	Cannot read properties of null (reading 'empClockIn')
+level : error: Aug-10-2023 22:32:17: 	Cannot read properties of null (reading 'empClockIn')
+level : info: Aug-10-2023 22:34:08: 	Employee status updated
+level : info: Aug-10-2023 22:34:42: 	Employee clock in time
+level : info: Aug-10-2023 22:34:57: 	Employee status updated

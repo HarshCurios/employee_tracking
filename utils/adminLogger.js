@@ -1,9 +1,9 @@
 const { createLogger, transports, format } = require("winston");
 
-const notificationLogger = createLogger({
+const adminLogger = createLogger({
   transports: [
     new transports.File({
-      filename: "logs/notification/notificationLogs_info.log",
+      filename: "logs/adminLogs/adminLogs_info.log",
       level: "info",
       maxsize: 5242880,
       maxFiles: 5,
@@ -19,7 +19,7 @@ const notificationLogger = createLogger({
     }),
 
     new transports.File({
-      filename: "logs/notification/notificationLogs_info.log",
+      filename: "logs/adminLogs/adminLogs_info.log",
       level: "error",
       maxsize: 5242880,
       maxFiles: 5,
@@ -36,4 +36,4 @@ const notificationLogger = createLogger({
   ],
 });
 
-module.exports = notificationLogger;
+module.exports = adminLogger;

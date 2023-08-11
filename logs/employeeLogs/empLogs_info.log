@@ -144,3 +144,6 @@ level : error: Aug-10-2023 15:24:01: 	Email or password is not valid
 level : info: Aug-10-2023 15:24:18: 	Employee's account created
 level : info: Aug-10-2023 15:24:47: 	Employee logged in successfully
 level : info: Aug-10-2023 16:06:05: 	Employee's account created
+level : error: Aug-11-2023 17:23:38: 	Assignment to constant variable.
+level : error: Aug-11-2023 17:23:38: 	Assignment to constant variable.
+level : info: Aug-11-2023 17:24:07: 	Email sent successfully

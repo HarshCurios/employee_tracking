@@ -8,7 +8,6 @@ const empLogger = createLogger({
       maxsize: 5242880,
       maxFiles: 5,
       colorsize: false,
-      //format: format.combine(format.timestamp(), format.json())
       format: format.combine(
         format.timestamp({ format: "MMM-DD-YYYY HH:mm:ss" }),
         format.align(),
@@ -25,7 +24,6 @@ const empLogger = createLogger({
       maxsize: 5242880,
       maxFiles: 5,
       colorsize: false,
-      //format: format.combine(format.timestamp(), format.json())
       format: format.combine(
         format.timestamp({ format: "MMM-DD-YYYY HH:mm:ss" }),
         format.align(),

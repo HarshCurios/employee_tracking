@@ -4,7 +4,7 @@ const path = require("path");
 
 const empSchema = require("../../models/employSchema");
 const empLogger = require("../../utils/empLogger");
-const { transporter } = require("../services/emailService");
+const { sendMailService } = require("../../services/emailService")
 const authService = require("../services/authService");
 
 module.exports = {
@@ -24,10 +24,10 @@ module.exports = {
         });
       } else {
         if (empData.empGender === "male") {
-          let filePath = path.join(__dirname, "..", "uploads/male.jpg");
+          let filePath = path.join(__dirname, "..", "..", "uploads/male.jpg");
           empData.empProfilePic = filePath;
         } else {
-          let filePath = path.join(__dirname, "..", "uploads/female.jpg");
+          let filePath = path.join(__dirname, "..", "..", "uploads/female.jpg");
           empData.empProfilePic = filePath;
         }
         const salt = await bcrypt.genSalt(10);
@@ -88,19 +88,17 @@ module.exports = {
       );
       if (empData) {
         const link = `https://localhost:3000/employee/resetpassword/${empData._id}/${accessToken}`;
-        const info = await transporter.sendMail({
-          from: process.env.EMAIL,
-          to: empEmail,
-          subject: "Reset password email",
-          html: `<a href=${link}>click on this for reset password`,
-        });
-        empLogger.log("info", "Email sent successfully");
+        const subject = "Reset password email "
+        const { data } = await sendMailService(link, empEmail, subject)
+        if(data) {
+          empLogger.log("info", "Email sent successfully");
         return res.status(200).json({
           success: true,
           message: "Email sent successfully",
           empId: empData._id,
           token: accessToken,
         });
+        }
       } else {
         empLogger.log("error", "Invalid email, please enter valid email");
         res.status(400).json({
@@ -207,17 +205,20 @@ module.exports = {
     try {
       const employeeId = req.params.id;
       const employeeAddress = req.body.empAddress;
-      const newProfilePic = req.file
-        ? `/uploads/employeeProfilePic${req.file.filename}`
-        : undefined;
+      let newTechnologies =req.body.empTechnologies ? `${req.body.empTechnologies}` : undefined;
+      let newPhoneNo =req.body.empPhoneNo ? `${req.body.empPhoneNo}` : undefined;
+      const newProfilePic = req.file ? `/uploads/employeeProfilePic${req.file.filename}` : undefined;
       const updatedEmployee = await employeeSchema.findByIdAndUpdate(
         employeeId,
         {
           empProfilePic: newProfilePic,
           empAddress: employeeAddress,
+          empTechnologies : newTechnologies,
+          empPhoneNo : newPhoneNo
         },
         { new: true }
       );
+      
       if (!updatedEmployee) {
         logger.log("error", "Employee not found");
         return res.status(404).json({
@@ -225,14 +226,15 @@ module.exports = {
           message: "Employee not found",
         });
       } else {
-        logger.log("info", "Profile pic and address updated successfully");
+        empLogger.log("info", "User data updated successfully");
         res.status(200).json({
           success: true,
-          message: "Profile pic and address updated successfully ✔",
+          message: "User data updated successfully ✔",
+          user : updatedEmployee
         });
       }
     } catch (err) {
-      logger.log("error", err.message);
+      empLogger.log("error", err.message);
       res.status(500).json({
         success: false,
         error: err.message,

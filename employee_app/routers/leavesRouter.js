@@ -4,6 +4,6 @@ const leaves = require("../controllers/leavesControllers");
 
 const leaveRouter = express.Router();
 
-leaveRouter.post("/empleave/:id", leaves.empLeave)
+leaveRouter.post("/empleave/:id", leaves.empLeave);
 
-module.exports = leaveRouter
+module.exports = leaveRouter;

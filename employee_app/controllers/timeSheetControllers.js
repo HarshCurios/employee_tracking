@@ -19,13 +19,14 @@ module.exports = {
         clockInTime.empDaysLate = "Late";
       }
       await clockInTime.save();
+      timeSheetLogger.log("info", "Employee clock in time");
       res.status(201).json({
         success: true,
-
         message: "Employee clock in time",
         info: clockInTime,
       });
     } catch (error) {
+      timeSheetLogger.log("error", error.message);
       res.status(500).json({
         success: false,
         message: error.message,

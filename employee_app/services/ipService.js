@@ -1,8 +1,8 @@
-const ip = require("ip")
+const ip = require("ip");
 
 module.exports = {
   ipAddress: async () => {
-    empClockInIP = await ip.address()
-    return {empClockInIP};
+    empClockInIP = await ip.address();
+    return { empClockInIP };
   },
 };
